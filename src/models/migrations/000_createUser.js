@@ -9,7 +9,6 @@ exports.up = async function(knex) {
     table.string('email').unique().notNullable();
     table.string('password').notNullable();
     table.dateTime('date').notNullable();
-    table.boolean('admin').notNullable().defaultTo(false);
   });
 }
 
