@@ -5,7 +5,8 @@
   "main": "server.js",
   "devDependencies": {},
   "scripts": {
-    "knex:migrate": "knex --knexfile knexfile.js migrate:latest"
+    "knex:migrate": "knex --knexfile knexfile.js migrate:latest",
+    "knex:seed": "knex --knexfile knexfile.js seed:run"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
