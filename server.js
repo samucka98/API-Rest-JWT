@@ -1,11 +1,9 @@
 require('dotenv').config();
 const express = require('express');
+const userRouter = require('./src/routes/userRouter');
 const server = express();
 
-server.post('/user', (req, res) => {
-  console.log('Rota de usuários acessada!');
-  res.send('Rota de usuários!');
-});
+server.use('/user', userRouter);
 
 server.post('/admin', (req, res) => {
   console.log('Roda de administrador acessada!');
