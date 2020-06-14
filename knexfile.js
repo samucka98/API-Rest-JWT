@@ -15,5 +15,5 @@ module.exports = {
     directory: path.resolve(__dirname, 'src', 'models', 'seeds')
   },
 
-  useNullAsDefault: true
+  useNullAsDefault: true,
 };

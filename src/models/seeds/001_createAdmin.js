@@ -4,8 +4,8 @@ const bcrypt = require('bcryptjs');
 const pass = 'admin';
 
 exports.seed = async function(knex) {
-  await knex('User').insert({
-    avatar: '',
+  return await knex('User').insert({
+    avatar: 'photo',
     firstName: 'root',
     lastName: 'master',
     email: 'root@master.br',

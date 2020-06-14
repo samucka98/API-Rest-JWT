@@ -1,11 +1,10 @@
 const knex = require('../models/connection');
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 
 class UserController {
 
-  async register(req, res) {
-    const { avatar, firstName, lastName, email, password } = req.body;
+  async register(request, response) {
+    const { avatar, firstName, lastName, email, password } = request.body;
 
     const user = {
       avatar,
@@ -18,9 +17,9 @@ class UserController {
 
     try {
       await knex('User').insert(user);
-      res.send(user);
+      response.send(user);
     } catch (error) {
-      res.status(400).send(error);
+      response.status(400).send(error);
     }
   }
 

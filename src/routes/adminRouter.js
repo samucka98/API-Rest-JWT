@@ -1,9 +1,12 @@
 const express = require('express');
 const adminRouter = express.Router();
 
-adminRouter.get('/', (req, res) => {
-  console.log('Rota de administrador acessada!');
-  res.send('Área administrativa do sistema.');
-});
+const AuthController = require('../controllers/AuthController');
+const authController = new AuthController();
+
+const UserController = require('../controllers/UserController');
+const userController = new UserController();
+
+adminRouter.post('/register', userController.register);
 
 module.exports = adminRouter;

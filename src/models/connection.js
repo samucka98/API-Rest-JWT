@@ -8,7 +8,7 @@ const connection = knex({
     filename: path.resolve(__dirname, 'database', 'db.sqlite')
   },
 
-  useNullAsDefault: true
+  useNullAsDefault: true,
 });
 
 module.exports = connection;
