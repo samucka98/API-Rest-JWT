@@ -1,7 +1,7 @@
 const knex = require('knex');
 const bcrypt = require('bcryptjs');
 
-const pass = 'admin';
+const pass = '12345678';
 
 exports.seed = async function(knex) {
   return await knex('User').insert({

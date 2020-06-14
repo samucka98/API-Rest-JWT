@@ -7,6 +7,6 @@ const authController = new AuthController();
 const UserController = require('../controllers/UserController');
 const userController = new UserController();
 
-adminRouter.post('/register', userController.register);
+adminRouter.post('/register', authController.auth, userController.register);
 
 module.exports = adminRouter;

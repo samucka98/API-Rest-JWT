@@ -24,7 +24,7 @@ class AccessController {
     const authorization = bcrypt.compareSync(request.body.password, user.password);
 
     if (authorization) {
-      const token = jwt.sign({ id: user.id, email: user.email }, process.env.TOKEN_SECRET, { expiresIn: process.env.TOKEN_EXPIRED_TIME });
+      const token = jwt.sign({ id: user.id, email: user.email }, process.env.TOKEN_SECRET, { expiresIn: 3600 });
 
       response.header('authorization-token', token);
       response.send(`${ user.email } está logado!`);
