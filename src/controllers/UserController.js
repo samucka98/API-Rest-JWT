@@ -1,9 +1,19 @@
 const knex = require('../models/connection');
 const bcrypt = require('bcryptjs');
 
+const ValidateController = require('./ValidadeController');
+const validateController = new ValidateController();
+
 class UserController {
 
   async register(request, response) {
+
+    const { error } = validateController.register(request.body);
+
+    if (error) {
+      return response.status(400).send(error.message);
+    }
+
     const { avatar, firstName, lastName, email, password } = request.body;
 
     const user = {

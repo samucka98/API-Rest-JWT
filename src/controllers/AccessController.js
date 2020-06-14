@@ -2,9 +2,18 @@ const knex = require('../models/connection');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+const ValidateController = require('./ValidadeController');
+const validateContrller = new ValidateController();
+
 class AccessController {
 
   async login(request, response) {
+
+    const { error } = validateContrller.login(request.body);
+
+    if (error) {
+      return response.status(400).send(error.message);
+    }
 
     const user = await knex('User').select('*').where('email', request.body.email).first();
 
