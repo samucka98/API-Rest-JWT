@@ -6,6 +6,23 @@ const validateController = new ValidateController();
 
 class UserController {
 
+  async index(request, response) {
+    try {
+      
+      const data = await knex('User')
+        .select('id')
+        .select('avatar')
+        .select('firstName')
+        .select('lastName')
+        .select('email');
+      
+      response.send(data);
+
+    } catch (error) {
+      response.status(400).send(error);
+    }
+  }
+
   async register(request, response) {
 
     const { error } = validateController.register(request.body);
@@ -31,6 +48,17 @@ class UserController {
     } catch (error) {
       response.status(400).send(error);
     }
+  }
+
+  async delete(request, response) {
+    const { id } = request.params;
+    const auth = request.headers;
+
+    const user = await knex('User')
+      .where('id', id)
+      .first();
+
+      await knex('User').where('id', id).first().delete();
   }
 
 }
