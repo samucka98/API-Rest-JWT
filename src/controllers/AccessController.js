@@ -27,7 +27,7 @@ class AccessController {
       const token = jwt.sign({ id: user.id, email: user.email }, process.env.TOKEN_SECRET, { expiresIn: 3600 });
 
       response.header('authorization-token', token);
-      response.send(`${ user.email } está logado!`);
+      response.send(`${ user.email } está logado! | Token: ${ token }`);
     } else {
       response.send('Senha inválida');
     }

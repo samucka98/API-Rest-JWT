@@ -31,10 +31,11 @@ class UserController {
       return response.status(400).send(error.message);
     }
 
-    const { avatar, firstName, lastName, email, password } = request.body;
+    const { avatar, active, firstName, lastName, email, password } = request.body;
 
     const user = {
       avatar,
+      active,
       firstName,
       lastName,
       email,
@@ -52,15 +53,18 @@ class UserController {
 
   async delete(request, response) {
     const { id } = request.params;
-    const auth = request.headers;
 
-    const user = await knex('User')
-      .where('id', id)
-      .first();
+    if (id == 1) {
+      return response.status(401).send('Este usuário não pode ser excluido sem acionar o suporte!');
+    } else {
+      const user = await knex('User')
+        .where('id', id)
+        .first();
 
-      await knex('User').where('id', id).first().delete();
+        await knex('User').where('id', id).first().delete();
+        response.status(200).send('Usuario deletado com sucesso!');
+    }
   }
-
 }
 
 module.exports = UserController;

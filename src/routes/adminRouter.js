@@ -9,6 +9,6 @@ const userController = new UserController();
 
 adminRouter.get('/users', userController.index);
 adminRouter.post('/users', authController.auth, userController.register);
-adminRouter.delete('/users/:id', userController.delete);
+adminRouter.delete('/users/:id', authController.auth, userController.delete);
 
 module.exports = adminRouter;
