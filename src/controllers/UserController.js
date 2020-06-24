@@ -65,6 +65,10 @@ class UserController {
         response.status(200).send('Usuario deletado com sucesso!');
     }
   }
+
+  async update() {
+
+  }
 }
 
 module.exports = UserController;

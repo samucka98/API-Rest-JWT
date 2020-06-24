@@ -17,5 +17,4 @@
 | *POST*   | `/admin/users`      | Faz o cadastro de um novo usuário. |
 | *GET*    | `/admin/users`      | Lista todos os usuários cadastrados. |
 | *DELETE* | `/admin/users/:id`  | Deleta um usuário do banco de dados |
-| *PATCH*  | `/admin/users/:id`  | Atualização parcial |
-| *PUT*    | `/admin/users/:id`  | Atualização de todos os campos |
+| *PUT*    | `/admin/users/:id`  | Atualização |
