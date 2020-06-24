@@ -2,7 +2,7 @@ const Joi = require('@hapi/joi');
 
 class ValidateController {
 
-  register(data) {
+  registerUser(data) {
     const schema = Joi.object({
       avatar: Joi.string(),
       active: Joi.boolean().required(),
@@ -15,7 +15,7 @@ class ValidateController {
     return schema.validate(data);
   }
 
-  login(data) {
+  loginUser(data) {
     const schema = Joi.object({
       email: Joi.string().email().required(),
       password: Joi.string().required().min(6).max(100)

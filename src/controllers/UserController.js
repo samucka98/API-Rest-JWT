@@ -25,7 +25,7 @@ class UserController {
 
   async register(request, response) {
 
-    const { error } = validateController.register(request.body);
+    const { error } = validateController.registerUser(request.body);
 
     if (error) {
       return response.status(400).send(error.message);
@@ -52,7 +52,7 @@ class UserController {
   }
 
   async update(request, response) {
-    const { error } = validateController.register(request.body);
+    const { error } = validateController.registerUser(request.body);
 
     if (error) {
       return response.status(400).send(error.message);

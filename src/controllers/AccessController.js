@@ -9,7 +9,7 @@ class AccessController {
 
   async login(request, response) {
 
-    const { error } = validateContrller.login(request.body);
+    const { error } = validateContrller.loginUser(request.body);
 
     if (error) {
       return response.status(400).send(error.message);
