@@ -1,6 +1,5 @@
-const knex = require('../models/connection');
 const bcrypt = require('bcryptjs');
-
+const knex = require('../models/connection');
 const ValidateController = require('./ValidadeController');
 const validateController = new ValidateController();
 
@@ -49,7 +48,7 @@ class UserController {
     const { avatar, active, firstName, lastName, email, password } = request.body;
 
     const user = {
-      avatar,
+      avatar: request.file.filename,
       active,
       firstName,
       lastName,
