@@ -22,7 +22,7 @@ class UserController {
       const serializedUsers = data.map(user => {
         return {
           id: user.id,
-          image_url: `http://${process.env.DOMAIN}:${process.env.PORT}/src/uploads/users/avatar/${user.avatar}`,
+          image_url: `http://${process.env.DOMAIN}:${process.env.PORT}/uploads/${user.avatar}`,
           firstName: user.firstName,
           lastName: user.lastName,
           email: user.email,

@@ -1,15 +1,13 @@
 require('dotenv').config();
-const cors = require('cors');
-const Routes = require('./src/routes/routes');
-const express = require('express');
 const path = require('path');
+const cors = require('cors');
+const routes = require('./src/routes/routes');
+const express = require('express');
 const server = express();
 
 server.use(cors());
 server.use(express.json());
-
-server.use('/dashboard', Routes.accessRouter);
-server.use('/dashboard', Routes.adminRouter);
+server.use('/dashboard', routes);
 
 server.use('/uploads', express.static(path.resolve(__dirname, 'src', 'uploads')));
 

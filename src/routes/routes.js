@@ -1,9 +1,10 @@
+const express = require('express');
+const routes = express();
+
 const accessRouter = require('./accessRouter');
 const adminRouter = require('./adminRouter');
 
-const Routes = {
-  accessRouter,
-  adminRouter
-}
+routes.use('/access', accessRouter);
+routes.use('/admin', adminRouter);
 
-module.exports = Routes;
+module.exports = routes;
