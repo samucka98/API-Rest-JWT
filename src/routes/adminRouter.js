@@ -4,7 +4,7 @@ const adminRouter = express.Router();
 const multer = require('multer');
 const UploadConfig = require('../middlewares/Upload');
 const uploadConfig = new UploadConfig();
-const upload = multer(uploadConfig);
+const upload = multer(uploadConfig).useMulterUpload;
 
 const UserController = require('../controllers/UserController');
 const userController = new UserController();
