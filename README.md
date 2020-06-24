@@ -4,8 +4,6 @@
 
 *Usuários:* São os administradores do sistema, são eles que conseguem realizar o login e dependendo de suas permissões gerenciar outros recursos do sistema como cadastrar novos usuários, clientes e etc.
 
-![](/src/assets/user.png)
-
 ## Endpoints
 
 > Ao realizar o login o sistema gerará um token

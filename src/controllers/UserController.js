@@ -18,8 +18,20 @@ class UserController {
         .select('email')
         .select('date')
         .select('update');
+
+      const serializedUsers = data.map(user => {
+        return {
+          id: user.id,
+          image_url: `http://${process.env.DOMAIN}:${process.env.PORT}/src/uploads/users/avatar/${user.avatar}`,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          date: user.date,
+          update: user.update
+        }
+      })
       
-      response.send(data);
+      response.json(serializedUsers);
 
     } catch (error) {
       response.status(400).send(error);
