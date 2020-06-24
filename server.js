@@ -1,14 +1,17 @@
 require('dotenv').config();
 const cors = require('cors');
+const Routes = require('./src/routes/routes');
 const express = require('express');
+const path = require('path');
 const server = express();
 
-const accessRouter = require('./src/routes/accessRouter');
-const adminRouter = require('./src/routes/adminRouter');
-
 server.use(cors());
-server.use('/access', express.json(), accessRouter);
-server.use('/admin', express.json(), adminRouter);
+server.use(express.json());
+
+server.use('/dashboard', Routes.accessRouter);
+server.use('/dashboard', Routes.adminRouter);
+
+server.use('/uploads', express.static(path.resolve(__dirname, 'src', 'uploads')));
 
 server.listen(process.env.PORT, () => {
   console.log(`Server running on PORT: ${ process.env.PORT }`);
