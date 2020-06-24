@@ -1,15 +1,15 @@
 const express = require('express');
 const adminRouter = express.Router();
 
-const AuthController = require('../controllers/AuthController');
-const authController = new AuthController();
+const Auth = require('../middlewares/Auth');
+const auth = new Auth();
 
 const UserController = require('../controllers/UserController');
 const userController = new UserController();
 
 adminRouter.get('/users', userController.index);
-adminRouter.post('/users', authController.auth, userController.register);
-adminRouter.put('/users/:id', authController.auth, userController.update);
-adminRouter.delete('/users/:id', authController.auth, userController.delete);
+adminRouter.post('/users', auth.jwtAuth, userController.register);
+adminRouter.put('/users/:id', auth.jwtAuth, userController.update);
+adminRouter.delete('/users/:id', auth.jwtAuth, userController.delete);
 
 module.exports = adminRouter;

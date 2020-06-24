@@ -1,8 +1,8 @@
 const jwt = require('jsonwebtoken');
 
-class AuthController {
+class Auth {
   
-  auth(request, response, next) {
+  jwtAuth(request, response, next) {
     const token = request.header('authorization-token');
 
     if (!token) {
@@ -19,4 +19,4 @@ class AuthController {
   }
 }
 
-module.exports = AuthController;
+module.exports = Auth;
