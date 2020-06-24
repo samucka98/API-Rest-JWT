@@ -9,7 +9,7 @@ const userController = new UserController();
 
 adminRouter.get('/users', userController.index);
 adminRouter.post('/users', authController.auth, userController.register);
+adminRouter.put('/users/:id', authController.auth, userController.update);
 adminRouter.delete('/users/:id', authController.auth, userController.delete);
-adminRouter.put('/users/:id', authController.auth, userController);
 
 module.exports = adminRouter;

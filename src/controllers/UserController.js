@@ -51,6 +51,26 @@ class UserController {
     }
   }
 
+  async update(request, response) {
+    const { error } = validateController.register(request.body);
+
+    if (error) {
+      return response.status(400).send(error.message);
+    }
+
+    const { avatar, active, firstName, lastName, email, password } = request.body;
+
+    const user = {
+      avatar,
+      active,
+      firstName,
+      lastName,
+      email,
+      password: bcrypt.hashSync(password, bcrypt.genSaltSync(12)),
+      date: new Date
+    }
+  }
+
   async delete(request, response) {
     const { id } = request.params;
 
@@ -64,10 +84,6 @@ class UserController {
         await knex('User').where('id', id).first().delete();
         response.status(200).send('Usuario deletado com sucesso!');
     }
-  }
-
-  async update() {
-
   }
 }
 
