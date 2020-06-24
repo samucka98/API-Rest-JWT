@@ -7,8 +7,8 @@ const authController = new AuthController();
 const UserController = require('../controllers/UserController');
 const userController = new UserController();
 
-adminRouter.post('/register', authController.auth, userController.register);
 adminRouter.get('/users', userController.index);
-adminRouter.delete('/user/:id', userController.delete);
+adminRouter.post('/users', authController.auth, userController.register);
+adminRouter.delete('/users/:id', userController.delete);
 
 module.exports = adminRouter;
