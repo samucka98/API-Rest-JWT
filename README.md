@@ -1,16 +1,14 @@
 # API-Rest-JWT
 
-## Nome da api: auth-jwt
+## Atores
 
-> Resources
->  1. <strong>access::</strong> `Para acesso `
->  2. <strong>admin::</strong> `Para operações que requerem  autorização`
+*Usuarios:* Sao os administradores do sistema, são eles que podem realizar login e cadastrar novos usuários
 
-## URIs
+## Endpoints
 
-| Method | URI                       | Description  |
-|--------|---------------------------|--------------|
-| *POST* | `auth-jwt/access/login`   | Realiza o login e gera o token |
-| *POST* | `auth-jwt/admin/register` | Faz o cadastro de um novo usuário requer um token |
-| *GET*  | `auth-jwt/admin/users`    | Lista todos os usuários cadastrados, requer um token |
-| *GET*  | `auth-jwt/admin/user/:id` | Lista um único usuário pelo id |
+| Method   | URI                 | Description  |
+|----------|---------------------|--------------|
+| *POST*   | `/access/login`     | Realiza o login e gera o token |
+| *POST*   | `/admin/users`      | Faz o cadastro de um novo usuário requer um token |
+| *GET*    | `/admin/users`      | Lista todos os usuários cadastrados, requer um token |
+| *DELETE* | `/admin/users/:id`  | Deleta um usuário do banco de dados |
