@@ -12,9 +12,12 @@ class UserController {
       const data = await knex('User')
         .select('id')
         .select('avatar')
+        .select('active')
         .select('firstName')
         .select('lastName')
-        .select('email');
+        .select('email')
+        .select('date')
+        .select('update');
       
       response.send(data);
 
@@ -40,7 +43,8 @@ class UserController {
       lastName,
       email,
       password: bcrypt.hashSync(password, bcrypt.genSaltSync(12)),
-      date: new Date
+      date: new Date,
+      update: new Date
     }
 
     try {
@@ -52,22 +56,38 @@ class UserController {
   }
 
   async update(request, response) {
-    const { error } = validateController.registerUser(request.body);
+    const { id } = request.params;
+    const user = await knex('User').where('id', id).first();
 
-    if (error) {
-      return response.status(400).send(error.message);
-    }
+    if (user) {
+      const { error } = validateController.registerUser(request.body);
 
-    const { avatar, active, firstName, lastName, email, password } = request.body;
+      if (error) {
+        return response.status(400).send(error.message);
+      }
 
-    const user = {
-      avatar,
-      active,
-      firstName,
-      lastName,
-      email,
-      password: bcrypt.hashSync(password, bcrypt.genSaltSync(12)),
-      date: new Date
+      const { avatar, active, firstName, lastName, email, password } = request.body;
+
+      try {
+        await knex('User')
+        .where('id', '=', id)
+        .update({
+          avatar,
+          active,
+          firstName,
+          lastName,
+          email,
+          password: bcrypt.hashSync(password, bcrypt.genSaltSync(12)),
+          update: new Date()
+        });
+
+        response.status(200).send('Usuario atualizado!');
+      } catch (error) {
+        response.status(500).send('Erro ao atualizar, entre em contato com o suporte!');
+      }
+
+    } else {
+      response.status(400).send('Usuário não encontrado!');
     }
   }
 

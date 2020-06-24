@@ -1,6 +1,7 @@
 const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '..', '..', '..', '.env') });
 const bcrypt = require('bcryptjs');
+const knex = require('knex');
 
 exports.seed = async function(knex) {
   return await knex('User').insert({
@@ -10,6 +11,7 @@ exports.seed = async function(knex) {
     lastName: process.env.ADM_LNAME,
     email: process.env.ADM_MAIL,
     password: bcrypt.hashSync(process.env.ADM_PASS, bcrypt.genSaltSync(12)),
-    date: new Date
+    date: new Date,
+    update: new Date
   });
 }
